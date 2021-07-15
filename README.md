@@ -26,7 +26,8 @@ Edit this file with a simple text editor like notepad. You can use Excel, but yo
 Anyhow, these are the commands and corresponding responses that you want your bot to reply to. Each line is one command/response combination, separated by, you guessed it, a comma. Hence the "comma seperated values" thing. Programmers are hella smart.
 
 You can add as many commands as you like, and these do not necessarily have to start with an exclamation mark. You want your both to respond whenever someone starts a sentence with "I"? Go right ahead and create the line:
-*I,nobody cares about what you think.*
+
+>I,nobody cares about what you think.
 
 Easy as pie!
 
