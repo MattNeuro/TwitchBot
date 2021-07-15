@@ -47,3 +47,6 @@ I will add new features as and when I need them, but really the whole purpose of
 
 # Fixing stuff' 
 If you want to muck about with this yourself, you should be able to download the whole affair and import it as a maven project into Netbeans. That's what I did anyway and it seems to work for me. Fair wairning: you can expect as much support from me as you would from a particularly soggy leave of grass. Come on man, you're a programmer, google your problems like the rest of us.
+
+# Credits
+Again, mad props to Gikkman et al for creating the underlying library, hell'a easy to use mates, bra jobbet. If you like this, come over to my channel and say hi: DrTauntsalot at https://www.twitch.tv/drtauntsalot. 
