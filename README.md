@@ -36,8 +36,8 @@ There are a few special commands, marked in the example responses with a [placeh
 - !quote: produce a random quote from the quotes.txt file, if it exists. Each line is one quote.
 - !newQuote: add a new quote to the quotes.txt file (and create the file if it does not exist). I opted not to put a limit on who can use this, so if you'd prefer if your viewers cannot add new quotes, you may want to remove this command.
 - !giveaway: signs a viewer up for a giveaway.
-  - !giveaway draw: picks one viewer from those that signed up. 
-  - !giveway clear: empties the list of viewers who signed up for your giveaway.
+  - !giveaway draw: picks one viewer from those that signed up. Only available to mods and up.
+  - !giveway clear: empties the list of viewers who signed up for your giveaway. Only available to mods and up.
 - !commands: lists all available commands to the user. This will automatically update with all commands you place in this file. Again, if you do not want your viewers to know which commands they can use (bit weird, but I'm not judging), simply remove this line from the respones.csv file.
 
 ## Running the bot
