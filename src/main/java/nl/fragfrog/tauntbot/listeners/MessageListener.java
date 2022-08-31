@@ -20,7 +20,7 @@ import nl.fragfrog.tauntbot.TauntBot;
  *  
  *  @author DrTauntsalot
  */
-public class MessageListener implements TwirkListener {
+public class MessageListener extends TauntBot implements TwirkListener {
     
     private final   Twirk               twirk;    
     private final   String              filename        = "adds.txt";    
@@ -30,29 +30,42 @@ public class MessageListener implements TwirkListener {
     private         int                 messageCount    = 0;
     
 
-    public MessageListener(Twirk twirk, int interval) {
+    public MessageListener(Twirk twirk) {
+        this.interval   = Integer.parseInt(TauntBot.configuration.getProperty("addInterval"));
         this.twirk      = twirk;
-        this.interval   = interval;
         loadResponses();
     }
     
     
+    /**
+     *  Every time a message comes in this will increase the counter of messages
+     *  received. Once this hits the "addInterval" configuration value, one of the
+     *  advertisements (pre-determined messages) is posted in chat.
+     *  
+     *  If there are no advertisements listed, this will simply return without 
+     *  posting a message. Otherwise, it will display the current add and increment
+     *  the response counter to send the next response the next time this limit 
+     *  is hit.
+     *      
+     *  @param sender   The entity who send the last message. Not used.
+     *  @param message  The last message received. Not used.
+     */
     @Override
     public void onPrivMsg( TwitchUser sender, TwitchMessage message) {
         messageCount++;
-        responseIndex++;
-        if (responseIndex >= responses.size())
+        if (responseIndex >= responses.size())                      // If we reached the last add, reset from the beginning.
             responseIndex = 0;
 
-        if (messageCount < interval)
+        if (messageCount < interval)                                // Only act once every [addInterval] messages
             return;
         
-        if (responses.isEmpty())
+        if (responses.isEmpty())                                    // If there are no recorded adds, skip.
             return;
             
         TauntBot.logger.info("Received " + messageCount + " messages since last action. Acting.");
-        twirk.channelMessage(responses.get(responseIndex));
-        messageCount = 0;
+        twirk.channelMessage(responses.get(responseIndex));         // Send a message to chat.
+        responseIndex++;                                            // Prepare the next response.
+        messageCount = 0;                                           // Reset the counter.
     }    
     
 

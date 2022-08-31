@@ -31,6 +31,16 @@ public class PrefixListener extends CommandBase {
     }
 
 
+    /**
+     *  Check each message for a known command. This can either be a user-defined
+     *  command (which results in a text response) or a special function, such as 
+     *  adding / displaying quotes, showing the possible commands, or running a 
+     *  giveaway.
+     * 
+     *  @param command  
+     *  @param sender
+     *  @param message 
+     */
     @Override
     protected void performCommand(String command, TwitchUser sender, TwitchMessage message) {
         TauntBot.logger.info("Looking for command: " + command);
@@ -42,6 +52,8 @@ public class PrefixListener extends CommandBase {
             twirk.channelMessage(name + ": " + QuoteListener.addQuote(sender, message));
         else if (command.equalsIgnoreCase("!quote"))
             twirk.channelMessage(name + ": " + QuoteListener.getQuote());
+        else if (command.equalsIgnoreCase("!giveaway"))
+            twirk.channelMessage(name + ": " + RaffleListener.giveaway(sender, message));
         else if (commands.containsKey(command.toLowerCase()))
             twirk.channelMessage(name + ": " + commands.get(command.toLowerCase()));
     }

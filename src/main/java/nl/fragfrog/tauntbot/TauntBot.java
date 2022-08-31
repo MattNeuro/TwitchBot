@@ -21,9 +21,9 @@ import nl.fragfrog.tauntbot.listeners.MessageListener;
  */
 public class TauntBot {
 
-    public  static final Logger       logger            = LogManager.getLogger(TauntBot.class);;
-    private static final Properties   configuration     = new Properties();
-    private static final String       CONFIG_FILE       = "configuration.properties";
+    public      static final Logger       logger            = LogManager.getLogger(TauntBot.class);;
+    protected   static final Properties   configuration     = new Properties();
+    private     static final String       CONFIG_FILE       = "configuration.properties";
 
     
     /**
@@ -58,11 +58,9 @@ public class TauntBot {
                                                                 .build();
         
         logger.info("Attaching IRC listeners");
-        twirk.addIrcListener( new DisconnectListener(twirk) );
-        twirk.addIrcListener( new PrefixListener(twirk)     );
-        
-        int addInterval = Integer.parseInt(configuration.getProperty("addInterval"));
-        twirk.addIrcListener( new MessageListener(twirk, addInterval) );
+        twirk.addIrcListener( new DisconnectListener(twirk) );      // Checks if the bot gets disconnected, then tries to reconnect.
+        twirk.addIrcListener( new PrefixListener(twirk)     );      // Checks for special !commands.
+        twirk.addIrcListener( new MessageListener(twirk)    );      // Periodically sends pre-defined messages to chat.
         
         logger.info("Connecting to Twitch network");
         twirk.connect();
