@@ -56,6 +56,8 @@ public class QuoteListener {
         content = content.substring(9);  // remove the "!newQuote" portion
 
         content = content.trim(); // Trim whitespace
+        if (content.length() < 1)
+            return "You cannot add an empty quote!";
         ql.quotes.add(content);
         ql.storeQuotes();
         return "your quote was added!";
