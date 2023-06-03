@@ -6,14 +6,14 @@ import nl.fragfrog.tauntbot.listeners.PrefixListener;
 import com.gikk.twirk.Twirk;
 import com.gikk.twirk.TwirkBuilder;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.Properties;
 import nl.fragfrog.tauntbot.listeners.MessageListener;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+        
 
 /**
  *
@@ -22,7 +22,7 @@ import nl.fragfrog.tauntbot.listeners.MessageListener;
 public class TauntBot {
 
     public      static final Logger       logger            = LogManager.getLogger(TauntBot.class);;
-    protected   static final Properties   configuration     = new Properties();
+    public      static final Properties   configuration     = new Properties();
     private     static final String       CONFIG_FILE       = "configuration.properties";
 
     
@@ -46,7 +46,7 @@ public class TauntBot {
             logger.info("Loading configuration...");
             configuration.load(new FileReader(CONFIG_FILE));
         } catch (IOException e) {
-            logger.error("Failed to load configuration file. Make sure the file '" + CONFIG_FILE + "' is readable.");
+            logger.error("Failed to load configuration file. Make sure the file '" + CONFIG_FILE + "' exists and is readable.");
             System.exit(-1);
         }
         
