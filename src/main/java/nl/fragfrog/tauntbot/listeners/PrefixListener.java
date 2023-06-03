@@ -55,7 +55,7 @@ public class PrefixListener extends CommandBase {
         else if (command.equalsIgnoreCase("!giveaway"))
             twirk.channelMessage(name + ": " + RaffleListener.giveaway(sender, message));
         else if (command.equalsIgnoreCase("!ai"))
-            twirk.channelMessage(name + ": " + ChatGPTListener.ai(message));
+            twirk.channelMessage(name + ": " + ChatGPTListener.ai(sender, message));
         else if (commands.containsKey(command.toLowerCase()))
             twirk.channelMessage(name + ": " + commands.get(command.toLowerCase()));
     }
