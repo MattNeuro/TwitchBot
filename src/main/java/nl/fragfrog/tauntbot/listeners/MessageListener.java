@@ -53,6 +53,14 @@ public class MessageListener extends TauntBot implements TwirkListener {
     @Override
     public void onPrivMsg( TwitchUser sender, TwitchMessage message) {
         messageCount++;
+        
+        // Forward the message to our WoW server
+        WoWListener.sayInWoW(message.getContent());
+        
+        // Increment Fridge-Coins for the sender
+        GambleListener.addMessageReward(sender);
+        
+        
         if (responseIndex >= responses.size())                      // If we reached the last add, reset from the beginning.
             responseIndex = 0;
 

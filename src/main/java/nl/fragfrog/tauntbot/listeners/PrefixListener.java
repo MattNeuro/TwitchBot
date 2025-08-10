@@ -30,7 +30,7 @@ public class PrefixListener extends CommandBase {
         this.twirk = twirk;
     }
 
-
+    
     /**
      *  Check each message for a known command. This can either be a user-defined
      *  command (which results in a text response) or a special function, such as 
@@ -46,6 +46,10 @@ public class PrefixListener extends CommandBase {
         TauntBot.logger.info("Looking for command: " + command);
         String name = sender.getDisplayName();
         
+        System.out.println("Command: " + command);
+        
+        System.out.println(twirk.getUsersOnline());
+        
         if (command.equalsIgnoreCase("!commands"))
             twirk.channelMessage(name + " you can use the following commands: " + this.getCommands());
         else if (command.equalsIgnoreCase("!newquote"))
@@ -54,8 +58,10 @@ public class PrefixListener extends CommandBase {
             twirk.channelMessage(name + ": " + QuoteListener.getQuote());
         else if (command.equalsIgnoreCase("!giveaway"))
             twirk.channelMessage(name + ": " + RaffleListener.giveaway(sender, message));
-        else if (command.equalsIgnoreCase("!ai"))
-            twirk.channelMessage(name + ": " + ChatGPTListener.ai(sender, message));
+        else if (command.equalsIgnoreCase("!gamble"))
+            twirk.channelMessage(name + ": " + GambleListener.gamble(sender, message, this.twirk));
+        else if (command.equalsIgnoreCase("!linkwow"))
+            twirk.channelMessage(name + ": " + WoWListener.setBotGuid(sender, message));
         else if (commands.containsKey(command.toLowerCase()))
             twirk.channelMessage(name + ": " + commands.get(command.toLowerCase()));
     }
